@@ -6,18 +6,24 @@
       </el-col>
     </el-row>
     <el-row>
-      <el-col>searchbar</el-col>
+      <el-col>
+        <search-bar />
+      </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
-import topBar from "./topbar";
+import topBar from './topbar.vue'
+import searchBar from './searchbar.vue'
 export default {
-  components: {
-    topBar
+  components:{
+    topBar,
+    searchBar
   }
-};
+}
 </script>
 
-<style lang="css"></style>
+<style lang="css">
+@import "@/assets/css/public/header/index.scss";
+</style>
