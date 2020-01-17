@@ -171,6 +171,7 @@ export default {
             })
             .then(({ status, data }) => {
               if (status === 200) {
+                // 注册成功，跳转到登陆页面
                 if (data && data.code === 0) {
                   location.href = "/login";
                 } else {
