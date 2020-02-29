@@ -95,6 +95,8 @@ export default {
         ],
         cpwd: [
           { required: true, message: "确认密码", trigger: "blur" },
+          // 二次验证，对比两次密码的内容，需要内置一个函数，支持验证函数的自定义
+          // validator是一个函数，函数的第一个是rule规则，第二个是value值，第三个是回调
           {
             validator: (rule, value, callback) => {
               if (value === "") {
@@ -111,6 +113,8 @@ export default {
       }
     };
   },
+  // 创建模板原因：
+  //     因为这个注册组件样式上并不需要header和footer，所以不能使用我们配置好的默认模板:default.vue,要新建一个blank.vue的空模板
   layout: "blank",
   methods: {
     sendMsg: function() {

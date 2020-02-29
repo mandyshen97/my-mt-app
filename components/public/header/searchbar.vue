@@ -62,17 +62,21 @@
 export default {
   data() {
     return {
-      search: "",
-      isFocus: false,
+      search: "",// 搜索框内容是否为空
+      isFocus: false,// 是否聚焦
       hotPlace: ["故宮", "故宮", "故宮", "故宮"],
       searchList: ["美食", "美食", "美食", "美食", "美食"]
     };
   },
   computed: {
+    // 热点地方
     isHotPlace: function() {
+      // 已经聚焦 && 搜索内容为空 的时候显示热门地点
       return this.isFocus && !this.search;
     },
+    // 搜索列表
     isSearchList: function() {
+      // 已经聚焦 && 搜索内容不为空 的时候显示搜索列表
       return this.isFocus && this.search;
     }
   },
@@ -81,13 +85,17 @@ export default {
       this.isFocus = true;
     },
     blur: function() {
-      this.isFocus = flase;
+      //setInterval和setTimeout中传入函数时，函数中的this会指向window对象，所以用self现将this存起来
+      let self = this
+      setTimeout(function(){
+        self.isFocus = false
+      },200)
     },
     input:function(){
-      
+      // todo
     }
   }
 };
 </script>
 
-<style lang="css"></style>
+<style></style>

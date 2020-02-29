@@ -1,3 +1,5 @@
+
+
 <template>
   <div class="layout-blank">
     <nuxt />

@@ -1,6 +1,10 @@
 <template>
   <div class="m-nav">
     <ul class="nav">
+    <!-- 用最简单的dom结构实现比较复杂交互
+    因为"我的美团" 这部分的内容既要兼顾着同级平行结构
+    又要有照顾到下面"我的订单"等那部分的内容
+    所以在这里并不将它和"我的订单"等部分内容放在一个结构里，如下： -->
       <li class="list">
         <nuxt-link to="/my">我的美团</nuxt-link>
         <dl>
@@ -30,6 +34,8 @@
           <dd><nuxt-link to="/kaipiao">商家申请开票</nuxt-link></dd>
         </dl>
       </li>
+      <!-- 官网上这部分的列表结构是有标题有内容
+    所以我们采取利用dl不是ul，，因为dl中dt和dd正好符合标题和内容这样的结构，如下： -->
       <li class="list site">
         <nuxt-link to="/site">网站导航</nuxt-link>
         <div class="subContainer">
