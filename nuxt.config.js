@@ -1,5 +1,9 @@
+
+
+
 module.exports = {
   mode: "universal",
+
   /*
    ** Headers of the page
    */
@@ -39,7 +43,9 @@ module.exports = {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: [
+    '@nuxtjs/axios',
+  ],
   /*
    ** Axios module configuration
    */
@@ -50,6 +56,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
+    transpile: [/^element-ui/],
     /*
      ** You can extend webpack config here
      */
