@@ -36,7 +36,7 @@ export default {
     get expire() {
       // 配置验证码的过期时间，这里设置1分钟
       return () => {
-        return new Date().getTime() + 60 * 60 * 1000;
+        return new Date().getTime() + 60 * 1000;
       };
     }
   }

@@ -132,7 +132,6 @@ export default {
   },
   methods: {
     sendMsg: function() {
-      console.log(this.$axios,'this.$axios')
       const self = this;
       let namePass;
       let emailPass;

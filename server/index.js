@@ -1,4 +1,3 @@
-// const Koa = require('koa')
 import Koa from "koa";
 const consola = require("consola");
 const { Nuxt, Builder } = require("nuxt");
@@ -13,7 +12,7 @@ import Redis from "koa-redis";
 // 美观 格式化
 import json from "koa-json";
 import dbConfig from './dbs/config'
-import passport from './interface/utils/passports'
+import passport from './interface/utils/passport'
 import users from './interface/users'
 
 const app = new Koa();
@@ -70,7 +69,7 @@ async function start() {
     await nuxt.ready();
   }
 
-  // 引入路由，放置在这里，要不然可能会失效
+  // 引入路由(注意位置)，放置在这里，要不然可能会失效
   app.use(users.routes()).use(users.allowedMethods())
 
 
