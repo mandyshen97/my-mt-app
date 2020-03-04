@@ -171,12 +171,12 @@ export default {
               // 连接成功，验证码发送成功
               if (status === 200 && data && data.code === 0) {
                 let count = 60;
-                self.statusMsg = `验证码已发送，剩余${count--}秒`;
                 // 定时器,倒计时60s
                 self.timerid = setInterval(function() {
                   self.statusMsg = `验证码已发送，剩余${count--}秒`;
-                  if (count === 0) {
+                  if (count === -1) {
                     clearInterval(self.timerid);
+                    self.statusMsg=''
                   }
                 }, 1000);
                 // 如果没成功

@@ -1,4 +1,4 @@
-import mongoose from 'mongose'
+import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 const City = new Schema({
   id:{

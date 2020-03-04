@@ -38,11 +38,11 @@ app.use(bodyParser({
 app.use(json())
 
 // 连接数据库
-// dbs:'mongodb://127.0.0.1:27017/student',
-// mongoose.connect(dbConfig.dbs, {
-//   useNewUrlParser:true,
-//   useCreateIndex:true
-// })
+// dbs:'mongodb://127.0.0.1:27017/dbs',
+mongoose.connect(dbConfig.dbs, {
+  useNewUrlParser:true,
+  useCreateIndex:true
+})
 
 // passport 相关配置
 app.use(passport.initialize())

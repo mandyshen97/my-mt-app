@@ -1,6 +1,6 @@
 export default {
-  // mongodb连接方式
-  dbs: "mongodb://127.0.0.1:27017/student",
+  // mongodb连接地址
+  dbs: "mongodb://127.0.0.1:27017/mtdbs",
   // redis连接方式
   redis: {
     get host() {
