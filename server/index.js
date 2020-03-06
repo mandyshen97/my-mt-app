@@ -11,20 +11,24 @@ import session from "koa-generic-session";
 import Redis from "koa-redis";
 // 美观 格式化
 import json from "koa-json";
-import dbConfig from './dbs/config'
-import passport from './interface/utils/passport'
+import dbConfig from "./dbs/config";
+import passport from "./interface/utils/passport";
 // 引入接口文件
-import users from './interface/users'
-import geo from './interface/geo'
+import users from "./interface/users";
+import geo from "./interface/geo";
+import search from "./interface/search";
+// import order from './interface/order'
+// import cart from './interface/cart'
+// import categroy from './interface/categroy'
 
 const app = new Koa();
 // 设置IP和端口
 const host = process.env.HOST || "127.0.0.1";
 const port = process.env.PORT || 3000;
 // 设置签名的 Cookie 密钥
-app.keys = ["mt", "keyskeys"]; 
+app.keys = ["mt", "keyskeys"];
 // 当 app.proxy 设置为 true 时(信任代理头字段)，支持 X-Forwarded-Host
-app.proxy = true; 
+app.proxy = true;
 app.use(
   session({
     key: "mt",
@@ -33,22 +37,24 @@ app.use(
   })
 );
 // 扩展类型的配置
-app.use(bodyParser({
-  extendTypes: ['json','form','text']
-}))
+app.use(
+  bodyParser({
+    extendTypes: ["json", "form", "text"]
+  })
+);
 // 美化
-app.use(json())
+app.use(json());
 
 // 连接数据库
 // dbs:'mongodb://127.0.0.1:27017/dbs',
 mongoose.connect(dbConfig.dbs, {
-  useNewUrlParser:true,
-  useCreateIndex:true
-})
+  useNewUrlParser: true,
+  useCreateIndex: true
+});
 
 // passport 相关配置
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Import and Set Nuxt.js options
 const config = require("../nuxt.config.js");
@@ -72,9 +78,12 @@ async function start() {
   }
 
   // 引入路由(注意位置)，放置在这里，要不然可能会失效
-  app.use(users.routes()).use(users.allowedMethods())
-  app.use(geo.routes()).use(geo.allowedMethods())
-
+  app.use(users.routes()).use(users.allowedMethods());
+  app.use(geo.routes()).use(geo.allowedMethods());
+  app.use(search.routes()).use(search.allowedMethods());
+  // app.use(cart.routes()).use(cart.allowedMethods())
+  // app.use(order.routes()).use(order.allowedMethods())
+  // app.use(categroy.routes()).use(categroy.allowedMethods())
 
   app.use(ctx => {
     ctx.status = 200;
@@ -91,3 +100,5 @@ async function start() {
 }
 
 start();
+
+

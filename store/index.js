@@ -1,5 +1,5 @@
 import geo from "./geo";
-import home from './home'
+import home from "./home";
 
 export const actions = {
   // 见Nuxt工作流
@@ -12,7 +12,7 @@ export const actions = {
     console.log(province, city);
     // 利用vuex做提交:
     commit(
-      'geo/setPosition',
+      "geo/setPosition",
       status === 200 ? { city, province } : { city: "", province: "" }
     );
     // 在接口中已经做过一次检查了，为什么要再次做检查：因为那个检查是在服务端做的，这个检查是在客户端做的，那个检查是保证通信时200的时候，那个检查不影响我们浏览器端，所以安全起见，还是要再做一次这个事情
@@ -21,20 +21,20 @@ export const actions = {
       status: status2,
       data: { menu }
     } = await app.$axios.get("geo/menu");
-    console.log(status2,menu)
+    console.log(status2, menu);
     commit("home/setMenu", status2 === 200 ? menu : []);
 
-    // const {
-    //   status: status3,
-    //   data: { result }
-    // } = await app.$axios.get("/search/hotPlace", {
-    //   params: {
-    //     // city:app.store.state.geo.position.city.replace('市','')
-    //     // city:app.store.state.geo.position.city.replace('市','')
-    //     city: "哈尔滨"
-    //   }
-    // });
-    // console.log(result);
-    // commit("home/setHotPlace", status3 === 200 ? result : []);
+    const {
+      status: status3,
+      data: { result }
+    } = await app.$axios.get("/search/hotPlace", {
+      params: {
+        // city:app.store.state.geo.position.city.replace('市','')
+        // city:app.store.state.geo.position.city.replace('市','')
+        city: status === 200 ? city : "北京"
+      }
+    });
+    console.log(result);
+    commit("home/setHotPlace", status3 === 200 ? result : []);
   }
 };
