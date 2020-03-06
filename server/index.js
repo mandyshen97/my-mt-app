@@ -13,7 +13,9 @@ import Redis from "koa-redis";
 import json from "koa-json";
 import dbConfig from './dbs/config'
 import passport from './interface/utils/passport'
+// 引入接口文件
 import users from './interface/users'
+import geo from './interface/geo'
 
 const app = new Koa();
 // 设置IP和端口
@@ -71,6 +73,7 @@ async function start() {
 
   // 引入路由(注意位置)，放置在这里，要不然可能会失效
   app.use(users.routes()).use(users.allowedMethods())
+  app.use(geo.routes()).use(geo.allowedMethods())
 
 
   app.use(ctx => {

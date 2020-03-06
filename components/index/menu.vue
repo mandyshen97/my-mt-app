@@ -3,7 +3,7 @@
     <!-- 一级分类的DOM结构 -->
     <dl class="nav" @mouseleave="mouseleave">
       <dt>全部分类</dt>
-      <dd v-for="(item, index) in menu" :key="index" @mouseenter="enter">
+      <dd v-for="(item, index) in $store.state.home.menu" :key="index" @mouseenter="enter">
         <i :class="item.type" />
         {{ item.name }}
         <span class="arrow"></span>
@@ -35,56 +35,14 @@ export default {
     return {
       kind: "", // 一级分类
       // 数据结构
-      menu: [
-        {
-          type: "food",
-          name: "美食",
-          id: 11,
-          child: [
-            {
-              title: "美食",
-              child: ["火锅", "汉堡", "小龙虾", "烤冷面", "小可爱"]
-            }
-          ]
-        },
-        {
-          type: "takeout",
-          name: "外卖",
-          id: 12,
-          child: [
-            {
-              title: "外卖",
-              child: ["麻辣烫", "烤肉拌饭", "板面", "炒面", "小可爱2号"]
-            }
-          ]
-        },
-        {
-          type: "hotel",
-          name: "酒店",
-          id: 13,
-          child: [
-            {
-              title: "酒店管理",
-              child: ["七天", "汉庭", "如家", "南郊", "小可爱3号"]
-            },
-            {
-              title: "酒店管理",
-              child: ["六天", "34填1", "1如家", "2南郊", "3小可爱3号"]
-            },
-            {
-              title: "酒店管理",
-              child: ["9七天", "5汉庭", "4如家", "6南郊", "4小可爱3号"]
-            }
-          ]
-        }
-      ]
+      menu:[]
     };
   },
   computed: {
     // （2）计算属性curdetail,当kind改变，重新计算curdetail的值
     curdetail: function() {
       // 设置过滤器，取到所有 type 和 kind 相等数据中的第一个
-      let res = this.menu.filter(item => item.type === this.kind)[0];
+      let res = this.$store.state.home.menu.filter(item => item.type === this.kind)[0];
       return res;
       // 此时的curdetail中存储的值 就是x对应menu中的数据，然后在dom中进行渲染
     }
