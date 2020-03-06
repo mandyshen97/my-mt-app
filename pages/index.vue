@@ -18,12 +18,12 @@
 <script>
 import Emenu from "../components/index/menu.vue";
 import Elife from "../components/index/life.vue";
-// import Eartistic from "../components/index/artistic.vue";
+import Eartistic from "../components/index/artistic.vue";
 export default {
   components: {
     Emenu,
     Elife,
-    // Eartistic
+    Eartistic
   }
 };
 </script>

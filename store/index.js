@@ -2,7 +2,7 @@ import geo from "./geo";
 import home from "./home";
 
 export const actions = {
-  // 见Nuxt工作流
+  // 见Nuxt工作流  nuxtServerInit 在服务端获取数据，将数据存到vuex中，客户端可以去vuex中取到这个数据
   async nuxtServerInit({ commit }, { req, app }) {
     // 请求接口，请求axios类库，为什么写app呢，因为这个时候没有dom实例，拿不到类似对象，拿不到vue实例，只能拿到app，axios类库也是挂载到app下面的，虽然拿不到vue实例对象，但是可以拿到app实例，这个时候可以拿到asyncData的
     const {
@@ -21,7 +21,6 @@ export const actions = {
       status: status2,
       data: { menu }
     } = await app.$axios.get("geo/menu");
-    console.log(status2, menu);
     commit("home/setMenu", status2 === 200 ? menu : []);
 
     const {
@@ -31,10 +30,9 @@ export const actions = {
       params: {
         // city:app.store.state.geo.position.city.replace('市','')
         // city:app.store.state.geo.position.city.replace('市','')
-        city: status === 200 ? city : "北京"
+        city: '北京'
       }
     });
-    console.log(result);
     commit("home/setHotPlace", status3 === 200 ? result : []);
   }
 };
